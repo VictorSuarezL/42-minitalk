@@ -1,15 +1,17 @@
-NAME = pipex
+NAME = minitalk
 OBJ_DIR = obj
+SRC_DIR = src
 
 # Libft
 LIBFT = libft.a
-LIBFT_SRC = ./libft/
+LIBFT_SRC = ./lib/libft/
 
 # Compiler
 CC					=	gcc
 RM					=	rm -f
-CFLAGS				=	-Wall -Werror -Wextra
-
+HEADERS 			= 	-I ./includes -I $(LIBFT_SRC)
+# CFLAGS				=	-Wall -Werror -Wextra -I$(HEADERS)
+CFLAGS				=	$(HEADERS)
 # Colours
 RED					=	\033[0;31m
 GREEN				=	\033[0;32m
@@ -20,32 +22,44 @@ CYAN				=	\033[0;36m
 WHITE				=	\033[0;37m
 RESET				=	\033[0m
 
-SRC_FILES = src/main.c \
+SRC_FILES_SERVER = $(SRC_DIR)/server.c 
+SRC_FILES_CLIENT = $(SRC_DIR)/client.c 
 
-OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC_FILES)))
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: src/%.c Makefile
-	@$(CC) $(CFLAGS) -c $< -o $@
+OBJ_SERVER = $(SRC_FILES_SERVER:.c=.o)
+OBJ_CLIENT = $(SRC_FILES_CLIENT:.c=.o)
 
 # Rules
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 	@printf "$(BLUE)==> $(CYAN)Compiled\n$(RESET)"
 
-$(LIBFT):
-	@make -C libft bonus
+$(NAME): server client
 
-$(NAME): $(OBJ_DIR) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_SRC)$(LIBFT) -o $(NAME)
+$(LIBFT):
+	make -C $(LIBFT_SRC) 
+
+server: $(LIBFT) $(OBJ_SERVER)
+	gcc -o $@ $(OBJ_SERVER) $(CFLAGS) $(LIBFT_SRC)$(LIBFT)
+
+client: $(LIBFT) $(OBJ_CLIENT)
+	gcc -o $@ $(OBJ_CLIENT) $(CFLAGS) $(LIBFT_SRC)$(LIBFT)
+
+$(OBJ_SERVER): %.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+	$(info    OBJ_SERVER is $(OBJ_SERVER))
+	$(info    OBJ_CLIENT is $(OBJ_CLIENT))
+
+# $(OBJ_SERVER): %.o: %.c
+# 	$(CC) $(CFLAGS) -o $@ -c $<
+# 	$(info    OBJ_SERVER is $(OBJ_SERVER))
 
 clean:
-	@$(RM) $(NAME) $(OBJS)
+	$(RM) $(NAME) $(OBJ_SERVER) $(OBJ_CLIENT)
+	make -C $(LIBFT_SRC) clean
 	@printf "$(BLUE)==> $(RED)Removed\n$(RESET)"
 
 fclean: clean
-	@make -C libft fclean
+	rm -rf server client
+	@make -C $(LIBFT_SRC) fclean
 
 re: fclean all
 	@printf "$(BLUE)==> $(CYAN)Recompiled\n$(RESET)"
