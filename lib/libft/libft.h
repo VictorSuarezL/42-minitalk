@@ -15,6 +15,9 @@ void	ft_putchar(char c, int *n_chr);
 void	ft_putstr(char *s, int *n_chr);
 void	ft_put_nbr_base(char *str, long long int nbr, int *n_chr);
 
+// PRINTF:
+int	ft_printf(const char *str, ...);
+
 int					ft_isalpha(int i);
 int					ft_isdigit(int i);
 int					ft_isalnum(int i);

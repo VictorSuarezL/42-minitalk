@@ -1,4 +1,10 @@
 .DS_Store
+client
+server
+client_bonus
+server_bonus
+settings.json
+
 # Prerequisites
 *.d
 
