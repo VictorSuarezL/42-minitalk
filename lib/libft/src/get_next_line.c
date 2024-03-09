@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 09:00:30 by vsanz-su          #+#    #+#             */
-/*   Updated: 2023/10/27 11:17:26 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:57:50 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*ft_read_save(int fd, char *buf, char *stack)
 		if (bytes_read == -1)
 			return (NULL);
 		else if (bytes_read == 0)
-			break;
+			break ;
 		buf[bytes_read] = '\0';
 		if (!stack)
 			stack = ft_strdup("");

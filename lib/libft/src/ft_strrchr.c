@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:23:16 by vsanz-su          #+#    #+#             */
-/*   Updated: 2023/09/21 11:23:21 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:58:17 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (0);
 }
-

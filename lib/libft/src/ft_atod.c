@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/09 20:00:16 by vsanz-su          #+#    #+#             */
+/*   Updated: 2024/03/09 20:00:39 by vsanz-su         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
 
-double ft_atod(char *str)
+double	ft_atod(char *str)
 {
-	long int_part;
-	double dec_part;
-	int	i;
-	int	is_negative;
-	double pow;
+	long	int_part;
+	double	dec_part;
+	int		i;
+	int		is_negative;
+	double	pow;
 
 	i = 0;
 	int_part = 0;
@@ -35,6 +47,6 @@ double ft_atod(char *str)
 		pow /= 10;
 		dec_part = dec_part + (str[i] - '0') * pow;
 		++i;
-	}	
-	return(is_negative *(int_part + dec_part));
+	}
+	return (is_negative * (int_part + dec_part));
 }

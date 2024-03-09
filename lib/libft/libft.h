@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/09 20:03:14 by vsanz-su          #+#    #+#             */
+/*   Updated: 2024/03/09 20:04:07 by vsanz-su         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
@@ -11,12 +23,13 @@
 
 // PRINTF UTILS:
 # include <stdarg.h>
-void	ft_putchar(char c, int *n_chr);
-void	ft_putstr(char *s, int *n_chr);
-void	ft_put_nbr_base(char *str, long long int nbr, int *n_chr);
+
+void				ft_putchar(char c, int *n_chr);
+void				ft_putstr(char *s, int *n_chr);
+void				ft_put_nbr_base(char *str, long long int nbr, int *n_chr);
 
 // PRINTF:
-int	ft_printf(const char *str, ...);
+int					ft_printf(const char *str, ...);
 
 int					ft_isalpha(int i);
 int					ft_isdigit(int i);
@@ -54,16 +67,15 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_error(char *msg);
-double 				ft_atod(char *str);
-double 				ft_abs(double n);
-
+double				ft_atod(char *str);
+double				ft_abs(double n);
 
 /* GET NEXT LINE */
-char	*get_next_line(int fd);
+char				*get_next_line(int fd);
 
 /* BONUS PART */
 typedef struct s_list
-{ 
+{
 	void			*content;
 	struct s_list	*next;
 }					t_list;
@@ -80,6 +92,5 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
 
 #endif
