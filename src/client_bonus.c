@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:58:42 by vsanz-su          #+#    #+#             */
-/*   Updated: 2024/03/09 19:59:56 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/18 09:24:55 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ int	main(int ac, char *av[])
 {
 	int	pid;
 
+	if (ac < 2)
+		return (0);
 	signal(SIGUSR1, handler_checker);
 	signal(SIGUSR2, handler_checker);
 	pid = ft_atoi(av[1]);
+	if (pid <= 0)
+		return (0);
 	sig_send_msg(pid, av[2]);
 	sig_send_msg(pid, "\n");
-	// sleep(1);
-	// kill(pid, SIGKILL);
 }

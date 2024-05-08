@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 19:59:02 by vsanz-su          #+#    #+#             */
-/*   Updated: 2024/03/09 19:59:25 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:16:02 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	handler(int sig, siginfo_t *info, void *other)
 {
-	static char	c;
-	static int	bit;
+	static char	c = 0;
+	static int	bit = 0;
 
-	c = 0;
-	bit = 0;
 	(void)other;
 	if (sig == SIGUSR1)
 		c |= (1 << (7 - bit));

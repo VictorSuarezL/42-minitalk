@@ -11,8 +11,7 @@ LIBFT_SRC = ./lib/libft/
 CC					=	gcc
 RM					=	rm -f
 HEADERS 			= 	-I ./includes -I $(LIBFT_SRC)
-# CFLAGS				=	-Wall -Werror -Wextra -I$(HEADERS)
-CFLAGS				=	$(HEADERS)
+CFLAGS				=	-Wall -Werror -Wextra $(HEADERS)
 # Colours
 RED					=	\033[0;31m
 GREEN				=	\033[0;32m
@@ -23,10 +22,10 @@ CYAN				=	\033[0;36m
 WHITE				=	\033[0;37m
 RESET				=	\033[0m
 
-SRC_FILES_SERVER = $(SRC_DIR)/server.c 
-SRC_FILES_CLIENT = $(SRC_DIR)/client.c 
-SRC_FILES_SERVER_BONUS = $(SRC_DIR)/server_bonus.c 
-SRC_FILES_CLIENT_BONUS = $(SRC_DIR)/client_bonus.c 
+SRC_FILES_SERVER = $(SRC_DIR)/server.c
+SRC_FILES_CLIENT = $(SRC_DIR)/client.c
+SRC_FILES_SERVER_BONUS = $(SRC_DIR)/server_bonus.c
+SRC_FILES_CLIENT_BONUS = $(SRC_DIR)/client_bonus.c
 
 OBJ_SERVER = $(SRC_FILES_SERVER:.c=.o)
 OBJ_CLIENT = $(SRC_FILES_CLIENT:.c=.o)
@@ -44,7 +43,7 @@ $(NAME): server client
 $(NAME_BONUS): server_bonus client_bonus
 
 $(LIBFT):
-	make -C $(LIBFT_SRC) 
+	make -C $(LIBFT_SRC)
 
 server: $(LIBFT) $(OBJ_SERVER)
 	gcc -o $@ $(OBJ_SERVER) $(CFLAGS) $(LIBFT_SRC)$(LIBFT)

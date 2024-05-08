@@ -6,7 +6,7 @@
 /*   By: vsanz-su <vsanz-su@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:00:16 by vsanz-su          #+#    #+#             */
-/*   Updated: 2024/03/09 20:00:39 by vsanz-su         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:26:48 by vsanz-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,29 @@
 
 double	ft_atod(char *str)
 {
-	long	int_part;
-	double	dec_part;
-	int		i;
-	int		is_negative;
+	double	result;
 	double	pow;
+	int		sign;
 
-	i = 0;
-	int_part = 0;
-	is_negative = 1;
-	dec_part = 0;
-	pow = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+	result = 0.0;
+	pow = 0.1;
+	sign = 1;
+	while (*str == ' ')
+		str++;
+	if (*str == '-')
 	{
-		i++;
+		sign *= -1;
+		str++;
 	}
-	if (str[i] == '-')
-		is_negative = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str >= '0' && *str <= '9')
+		result = (result * 10) + (*str++ - '0') + 0.0;
+	if (*str++ == '.')
 	{
-		int_part = int_part * 10 + str[i] - '0';
-		++i;
+		while (*str >= '0' && *str <= '9')
+		{
+			result += (*str++ - '0') * pow;
+			pow *= 0.1;
+		}
 	}
-	if (str[i] == '.')
-	{
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		pow /= 10;
-		dec_part = dec_part + (str[i] - '0') * pow;
-		++i;
-	}
-	return (is_negative * (int_part + dec_part));
+	return (result * sign);
 }
